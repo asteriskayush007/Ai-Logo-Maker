@@ -1,11 +1,25 @@
-import React from 'react'
+import React from "react";
+import HeadingDesc from "./HeadingDesc";
+import Lookup from "@/app/_data/Lookup";
 
-function LogoDesc() {
+function LogoDesc({onHandleInputChange,formData}) {
   return (
-    <div>
-      LogoDesc
+    <div className="my-10">
+      <HeadingDesc
+        title={Lookup.LogoDescTitle}
+        description={Lookup.LogoDescDesc}
+      />
+
+      <input
+        type="text"
+        placeholder={Lookup.TitlePlaceHolder}
+        // defaultValue={formData?.desc}
+        value={formData.desc}
+        className="p-4 border rounded-md w-full shadow-md mt-5"
+        onChange={(e) => onHandleInputChange(e.target.value)}
+      />
     </div>
-  )
+  );
 }
 
-export default LogoDesc
+export default LogoDesc;

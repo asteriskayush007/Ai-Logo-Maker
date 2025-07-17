@@ -13,7 +13,7 @@ function CreateLogo() {
 
   const[step,setStep] = useState(1);
 
-  const [formData,setFormData] =useState();
+  const [formData,setFormData] =useState({});
 
   const onHandleInputChange=(field,value)=>{
 
@@ -21,23 +21,30 @@ function CreateLogo() {
       ...prev,
       [field]:value
     }))
+
+    console.log(formData);
   }
   return (
     <div className='mt-28 p-10 border rounded-xl 2xl:mx-72'>
       { step==1?
-        <LogoTitle onHandleInputChange={(v)=>onHandleInputChange('title',v)}/> :
+        <LogoTitle onHandleInputChange={(v)=>onHandleInputChange('title',v)}
+        formData={formData}/> :
         step==2?
-        <LogoDesc onHandleInputChange={(v)=>onHandleInputChange('description',v)}/> :
+        <LogoDesc onHandleInputChange={(v)=>onHandleInputChange('description',v)}
+        formData={formData}/> :
         step==3?
-        <LogoPalette onHandleInputChange={(v)=>onHandleInputChange('palette',v)}/> :
+        <LogoPalette onHandleInputChange={(v)=>onHandleInputChange('palette',v)}
+        formData={formData}/> :
         step==4?
-        <LogoDesign onHandleInputChange={(v)=>onHandleInputChange('design',v)}/> :
+        <LogoDesign onHandleInputChange={(v)=>onHandleInputChange('design',v)}
+        formData={formData}/> :
         step==5?
-        <LogoIdea onHandleInputChange={(v)=>onHandleInputChange('idea',v)}/> :
+        <LogoIdea onHandleInputChange={(v)=>onHandleInputChange('idea',v)}
+        formData={formData}/> :
         null
         
 
-      };
+      }
       
 
       <div className='flex items-center justify-between'>

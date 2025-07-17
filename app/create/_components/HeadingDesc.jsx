@@ -9,4 +9,4 @@ function HeadingDesc({title,description}) {
   )
 }
 
-export default HeadingDesc
+export default HeadingDesc;
