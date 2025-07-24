@@ -1,10 +1,23 @@
-import React from "react";
+"use client"
+
+import React, { useEffect } from "react";
 import HeadingDesc from "./HeadingDesc";
 import Lookup from "@/app/_data/Lookup";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { SignInButton, useUser } from "@clerk/nextjs";
+import Link from "next/link";
 
-function PricingModel() {
+function PricingModel({formData}) {
+
+    const {user} = useUser();
+
+    useEffect(()=>{
+        if(formData?.title && typeof window !=='undefined'){
+          localStorage.setItem('formData', JSON.stringify(formData));
+        }
+    },[formData])
+    console.log(formData);
   return (
     <div className="">
       <HeadingDesc
@@ -29,7 +42,15 @@ function PricingModel() {
                     return <h2 className="text-lg mt-3" key={index}>{features}</h2>
                 })}
               </div>
-              <Button>{pricing.button}</Button>
+                {user?
+                    <Link href={`/generate-logo?type=${pricing.title}`}>
+                        <Button>{pricing.button}</Button>
+                    </Link>
+                    :
+                    <SignInButton mode='modal' forceRedirectUrl={"/generate-logo?type="+pricing.title}>
+                        <Button>{pricing.button}</Button>
+                    </SignInButton>  
+                }
             </div>
           );
         })}

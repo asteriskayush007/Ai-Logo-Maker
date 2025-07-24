@@ -10,8 +10,8 @@ function LogoPalette({onHandleInputChange,formData}) {
   return (
     <div className="my-10">
       <HeadingDesc
-        title={Lookup.LogoColorPaletteTitle}
-        description={Lookup.LogoColorPaletteDesc}
+        title={Lookup?.LogoColorPaletteTitle}
+        description={Lookup?.LogoColorPaletteDesc}
       />
 
       <div>

@@ -1,32 +1,25 @@
-"use client"
+"use client";
 
-import React, { useState } from 'react'
-import HeadingDesc from './HeadingDesc'
-import Lookup from '@/app/_data/Lookup'
-import { useSearchParams } from 'next/navigation'
+import React from "react";
+import HeadingDesc from "./HeadingDesc";
+import Lookup from "@/app/_data/Lookup";
 
-function LogoTitle({onHandleInputChange}) {
-    const searchParam = useSearchParams();
-
-    const [title,setTitle] = useState(searchParam?.get('title')??'')
-
-
+function LogoTitle({ formData, onHandleInputChange }) {
   return (
-    <div className='my-10'>
-      <HeadingDesc 
-      title={Lookup?.LogoTitle}
-      description={Lookup.LogoTitleDesc}
+    <div className="my-10">
+      <HeadingDesc
+        title={Lookup?.LogoTitle}
+        description={Lookup.LogoTitleDesc}
       />
-        <input type="text" placeholder={Lookup.TitlePlaceHolder}
-            className='p-4 border rounded-md w-full shadow-md mt-5'
-            value={title}
-            onChange={(e) => {
-              setTitle(e.target.value);
-              onHandleInputChange(e.target.value);
-            }}
-        />
+      <input
+        type="text"
+        value={formData?.title || ""} // ← ensure it's always a string
+        onChange={(e) => onHandleInputChange(e.target.value)}
+        placeholder="Enter logo title"
+        className="border px-2 py-1 rounded"
+      />
     </div>
-  )
+  );
 }
 
-export default LogoTitle
+export default LogoTitle;
